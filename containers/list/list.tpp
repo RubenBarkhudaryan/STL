@@ -474,6 +474,99 @@ void	rub::list<T>::swap(rub::list<T>& other)
 
 /*-----list methods (operations)-----*/
 template <typename T>
+template <typename Compare>
+void	rub::list<T>::merge(rub::list<T>& other, Compare cmp)
+{
+	rub::list<T>	res;
+
+	rub::node<T>	*i = this->_head;
+	rub::node<T>	*j = other._head;
+
+	if (this != &other)
+	{
+		while (i != nullptr && j != nullptr)
+		{
+			if (cmp(i->value, j->value))
+			{
+				res.push_back(i->value);
+				i = i->next;
+			}
+			else
+			{
+				res.push_back(j->value);
+				j = j->next;
+			}
+		}
+	}
+	while (i != nullptr)
+	{
+		res.push_back(i->value);
+		i = i->next;
+	}
+	while (j != nullptr)
+	{
+		res.push_back(j->value);
+		j = j->next;
+	}
+	other.clear();
+	this->swap(res);
+}
+
+template <typename T>
+template <typename Compare>
+void	rub::list<T>::merge(rub::list<T>&& other, Compare cmp) noexcept
+{
+	this->merge(other, cmp);
+}
+
+template <typename T>
+void	rub::list<T>::merge(rub::list<T>& other)
+{
+	this->merge(other, [](const T& a, const T& b){ return a < b; });
+}
+
+template <typename T>
+void	rub::list<T>::merge(rub::list<T>&& other) noexcept
+{
+	this->merge(other, [](const T& a, const T& b){ return a < b; });
+}
+
+template <typename T>
+void	rub::list<T>::remove(const T& value)
+{
+	this->remove_if([&value](const T& val){ return (val == value); });
+}
+
+template <typename T>
+template <typename UnaryPred>
+void	rub::list<T>::remove_if(UnaryPred p)
+{
+	rub::node<T>	*curr = this->_head;
+
+	while (curr != nullptr)
+	{
+		rub::node<T>	*next = curr->next;
+
+		if (p(curr->value))
+		{
+			if (curr->prev)
+				curr->prev->next = curr->next;
+			else
+				this->_head = curr->next;
+
+			if (curr->next)
+				curr->next->prev = curr->prev;
+			else
+				this->_tail = curr->prev;
+
+			delete curr;
+			--(this->_size);
+		}
+		curr = next;
+	}
+}
+
+template <typename T>
 void	rub::list<T>::reverse(void)
 {
 	rub::node<T>	*curr = this->_head;
@@ -490,6 +583,44 @@ void	rub::list<T>::reverse(void)
 	prev = this->_head;
 	this->_head = this->_tail;
 	this->_tail = prev;
+}
+
+template <typename T>
+void	rub::list<T>::unique()
+{
+	this->unique([](const T& a, const T& b){ return (a == b); })
+}
+
+template <typename T>
+template <typename BinaryPred>
+void	rub::list<T>::unique(BinaryPred p)
+{
+
+	if (!this->_head || this->_head == this->_tail)
+		return ;
+
+	rub::node<T>	*curr = this->_head->next;
+
+	while (curr != nullptr)
+	{
+		if (p(curr->prev->value, curr->value))
+		{
+			rub::list<T>	*del_ptr = curr;
+
+			curr = curr->next;
+			del_ptr->prev->next = curr;
+
+			if (curr)
+				curr->prev = del_ptr->prev;
+			else
+				this->_tail = del_ptr->prev;
+
+			delete del_ptr;
+			--(this->_size);
+		}
+		else
+			curr = curr->next;
+	}
 }
 
 #endif //LIST_TPP

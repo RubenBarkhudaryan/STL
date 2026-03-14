@@ -95,7 +95,25 @@ namespace rub
 			void					swap(rub::list<T>& other);
 
 			/*-----list methods (operations)-----*/
+			template <typename Compare>
+			void					merge(rub::list<T>& other, Compare cmp);
+			
+			template <typename Compare>
+			void					merge(rub::list<T>&& other, Compare cmp) noexcept;
+			
+			void					merge(rub::list<T>& other);
+			void					merge(rub::list<T>&& other) noexcept;
+
 			void					reverse(void);
+			void					remove(const T& value);
+
+			template <typename UnaryPred>
+			void					remove_if(UnaryPred p);
+
+			void					unique();
+
+			template <typename BinaryPred>
+			void					unique(BinaryPred p);
 	};
 }
 
