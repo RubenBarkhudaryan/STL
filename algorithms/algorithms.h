@@ -23,7 +23,6 @@ void	bubble_sort(T *arr, std::size_t size);
 template <typename T>
 void	merge_sort(T *arr, std::size_t length);
 
-
 template <typename T>
 void	quick_sort(T *arr, std::size_t length);
 }

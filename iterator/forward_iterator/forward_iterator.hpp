@@ -1,6 +1,6 @@
-#ifndef FORWARD_ITERATOR_H
+#ifndef FORWARD_ITERATOR_HPP
 
-# define FORWARD_ITERATOR_H
+# define FORWARD_ITERATOR_HPP
 
 # include <cstddef>
 # include <iterator>
@@ -31,20 +31,20 @@ namespace rub
 			~forward_iterator() = default;
 
 			/*-----forward iterator operators-----*/
-			T&								operator*(void) noexcept;
-			T*								operator->(void) noexcept;
-			const T&						operator*(void) const noexcept;
-			const T*						operator->(void) const noexcept;
-			rub::forward_iterator<T>&		operator++(void) noexcept;
-			rub::forward_iterator<T>		operator++(int) noexcept;
-			bool							operator==(const rub::forward_iterator<T>& other) const noexcept;
-			bool							operator!=(const rub::forward_iterator<T>& other) const noexcept;
+			T&							operator*(void) noexcept;
+			T*							operator->(void) noexcept;
+			const T&					operator*(void) const noexcept;
+			const T*					operator->(void) const noexcept;
+			rub::forward_iterator<T>&	operator++(void) noexcept;
+			rub::forward_iterator<T>	operator++(int) noexcept;
+			bool						operator==(const rub::forward_iterator<T>& other) const noexcept;
+			bool						operator!=(const rub::forward_iterator<T>& other) const noexcept;
 
 			/*-----forward iterator functions-----*/
-			T*								base() const noexcept;
+			T*							base() const noexcept;
 	};
 }
 
 # include "./forward_iterator.tpp"
 
-#endif //FORWARD_ITERATOR_H
+#endif //FORWARD_ITERATOR_HPP

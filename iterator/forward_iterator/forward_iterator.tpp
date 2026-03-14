@@ -2,7 +2,7 @@
 
 # define FORWARD_ITERATOR_TPP
 
-# include "./forward_iterator.h"
+# include "./forward_iterator.hpp"
 
 template <typename T>
 rub::forward_iterator<T>::forward_iterator(void) : ptr(nullptr)
