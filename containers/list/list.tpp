@@ -477,25 +477,25 @@ template <typename T>
 template <typename Compare>
 void	rub::list<T>::merge(rub::list<T>& other, Compare cmp)
 {
+	if (this == &other)
+		return ;
+
 	rub::list<T>	res;
 
 	rub::node<T>	*i = this->_head;
 	rub::node<T>	*j = other._head;
 
-	if (this != &other)
+	while (i != nullptr && j != nullptr)
 	{
-		while (i != nullptr && j != nullptr)
+		if (cmp(i->value, j->value))
 		{
-			if (cmp(i->value, j->value))
-			{
-				res.push_back(i->value);
-				i = i->next;
-			}
-			else
-			{
-				res.push_back(j->value);
-				j = j->next;
-			}
+			res.push_back(i->value);
+			i = i->next;
+		}
+		else
+		{
+			res.push_back(j->value);
+			j = j->next;
 		}
 	}
 	while (i != nullptr)
@@ -588,7 +588,7 @@ void	rub::list<T>::reverse(void)
 template <typename T>
 void	rub::list<T>::unique()
 {
-	this->unique([](const T& a, const T& b){ return (a == b); })
+	this->unique([](const T& a, const T& b){ return (a == b); });
 }
 
 template <typename T>
@@ -605,7 +605,7 @@ void	rub::list<T>::unique(BinaryPred p)
 	{
 		if (p(curr->prev->value, curr->value))
 		{
-			rub::list<T>	*del_ptr = curr;
+			rub::node<T>	*del_ptr = curr;
 
 			curr = curr->next;
 			del_ptr->prev->next = curr;
