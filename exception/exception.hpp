@@ -1,6 +1,6 @@
-#ifndef EXCEPTION_H
+#ifndef EXCEPTION_HPP
 
-# define EXCEPTION_H
+# define EXCEPTION_HPP
 
 # include <string>
 # include <stdexcept>
@@ -22,4 +22,4 @@ namespace rub
 
 # include "./exception.tpp"
 
-#endif //EXCEPTION_H
+#endif //EXCEPTION_HPP

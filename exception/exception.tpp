@@ -2,8 +2,8 @@
 
 # define EXCEPTION_TPP
 
-# include "./exception.h"
 # include <utility>
+# include "./exception.hpp"
 
 rub::exception::exception(const char *issue) : issue(issue)
 {}

@@ -5,7 +5,7 @@
 # include <initializer_list>
 # include <iostream>
 # include <iterator>
-# include "../../exception/exception.h"
+# include "../../exception/exception.hpp"
 # include "../../iterator/random_access_iterator/random_access_iterator.hpp"
 
 namespace rub

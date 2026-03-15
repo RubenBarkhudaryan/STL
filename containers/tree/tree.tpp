@@ -2,9 +2,9 @@
 
 # define TREE_TPP
 
-# include "../queue/queue.h"
-# include "./tree.h"
 # include <iostream>
+# include "./tree.hpp"
+# include "../queue/queue.hpp"
 
 template <typename T>
 rub::Tree<T>::Tree(const T& val) : value(val)

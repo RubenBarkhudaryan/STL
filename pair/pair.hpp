@@ -1,6 +1,6 @@
-#ifndef PAIR_H
+#ifndef PAIR_HPP
 
-# define PAIR_H
+# define PAIR_HPP
 
 namespace rub
 {
@@ -13,4 +13,4 @@ namespace rub
 	};
 };
 
-#endif //PAIR_H
+#endif //PAIR_HPP

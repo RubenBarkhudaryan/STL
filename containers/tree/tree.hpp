@@ -1,8 +1,8 @@
-#ifndef TREE_H
+#ifndef TREE_HPP
 
-# define TREE_H
+# define TREE_HPP
 
-# include "../vector/vector.h"
+# include "../vector/vector.hpp"
 
 namespace rub
 {
@@ -29,6 +29,7 @@ namespace rub
 			void				print(void) const;
 	};
 }
-#include "tree.tpp"
 
-#endif //TREE_H
+# include "./tree.tpp"
+
+#endif //TREE_HPP
