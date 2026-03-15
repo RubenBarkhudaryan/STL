@@ -13,7 +13,7 @@ namespace rub
 	template <typename T>
 	class	list
 	{
-		private:
+		protected:
 			rub::node<T>	*_head;
 			rub::node<T>	*_tail;
 			std::size_t		_size;

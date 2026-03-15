@@ -59,8 +59,8 @@ rub::list<T>&	rub::list<T>::operator=(const rub::list<T>& other)
 	{
 		this->clear();
 
-		for (const auto& elem : other)
-			this->push_back(elem);
+		for (auto it = other.cbegin(); it != other.cend(); ++it)
+			this->push_back(*it);
 	}
 	return (*this);
 }
@@ -481,7 +481,6 @@ void	rub::list<T>::merge(rub::list<T>& other, Compare cmp)
 		return ;
 
 	rub::list<T>	res;
-
 	rub::node<T>	*i = this->_head;
 	rub::node<T>	*j = other._head;
 
