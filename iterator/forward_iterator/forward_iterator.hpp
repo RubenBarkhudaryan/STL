@@ -40,7 +40,7 @@ namespace rub
 			bool						operator==(const rub::forward_iterator<T>& other) const noexcept;
 			bool						operator!=(const rub::forward_iterator<T>& other) const noexcept;
 
-			/*-----forward iterator functions-----*/
+			/*-----forward iterator methods-----*/
 			T*							base() const noexcept;
 	};
 }

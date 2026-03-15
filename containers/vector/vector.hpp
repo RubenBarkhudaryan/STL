@@ -1,10 +1,12 @@
-#ifndef VECTOR_H
+#ifndef VECTOR_HPP
 
-# define VECTOR_H
+# define VECTOR_HPP
 
 # include <initializer_list>
 # include <iostream>
+# include <iterator>
 # include "../../exception/exception.h"
+# include "../../iterator/random_access_iterator/random_access_iterator.hpp"
 
 namespace rub
 {
@@ -17,6 +19,11 @@ namespace rub
 			std::size_t	_capacity = 0;
 
 		public:
+			using iterator = rub::random_access_iterator<T>;
+			using const_iterator = rub::random_access_iterator<const T>;
+			using reverse_iterator = std::reverse_iterator<iterator>;
+			using const_reverse_iterator = std::reverse_iterator<const_iterator>;
+
 			/*---------vector ctor/dtor---------*/
 			vector();
 			vector(std::size_t size);
@@ -52,6 +59,20 @@ namespace rub
 			const T&		back(void) const noexcept;
 			T&				back(void) noexcept;
 
+			/*iterators*/
+			iterator		begin(void) noexcept;
+			const_iterator	begin(void) const noexcept;
+			const_iterator	cbegin(void) const noexcept;
+			iterator		end(void) noexcept;
+			const_iterator	end(void) const noexcept;
+			const_iterator	cend(void) const noexcept;
+			reverse_iterator	rbegin(void) noexcept;
+			const_reverse_iterator	rbegin(void) const noexcept;
+			const_reverse_iterator	crbegin(void) const noexcept;
+			reverse_iterator	rend(void) noexcept;
+			const_reverse_iterator	rend(void) const noexcept;
+			const_reverse_iterator	crend(void) const noexcept;
+
 			/*capacity*/
 			void			reserve(std::size_t new_capacity);
 			void			resize(std::size_t new_size, const T& value = T());
@@ -72,4 +93,4 @@ namespace rub
 
 #include "./vector.tpp"
 
-#endif //VECTOR_H
+#endif //VECTOR_HPP

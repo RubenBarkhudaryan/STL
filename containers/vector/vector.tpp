@@ -1,15 +1,12 @@
-#include "./vector.h"
+#include "./vector.hpp"
 
 template <typename T>
 rub::vector<T>::vector() : _data(nullptr), _size(0), _capacity(0)
-{
-	// std::cout << "vector default ctor.\n";
-}
+{}
 
 template <typename T>
 rub::vector<T>::vector(std::size_t size) : _data(nullptr), _size(0), _capacity(0)
 {
-	// std::cout << "vector parameterized ctor.\n";
 	if (size > 0)
 	{
 		this->_size = size;
@@ -23,7 +20,6 @@ rub::vector<T>::vector(std::size_t size) : _data(nullptr), _size(0), _capacity(0
 template <typename T>
 rub::vector<T>::vector(std::size_t size, const T& value) : _data(nullptr), _size(0), _capacity(0)
 {
-	// std::cout << "vector parameterized ctor.\n";
 	if (size > 0)
 	{
 		this->_size = size;
@@ -39,7 +35,6 @@ rub::vector<T>::vector(std::size_t size, const T& value) : _data(nullptr), _size
 template <typename T>
 rub::vector<T>::vector(const rub::vector<T>& other) : _data(nullptr), _size(other._size), _capacity(other._capacity)
 {
-	// std::cout << "vector copy ctor.\n";
 	this->_data = new T[this->_capacity]();
 	for (std::size_t i = 0; i < other._size; ++i)
 		this->_data[i] = other._data[i];
@@ -48,7 +43,6 @@ rub::vector<T>::vector(const rub::vector<T>& other) : _data(nullptr), _size(othe
 template <typename T>
 rub::vector<T>::vector(rub::vector<T>&& other) noexcept : _data(other._data), _size(other._size), _capacity(other._capacity)
 {
-	// std::cout << "vector move ctor.\n";
 	other._size = 0;
 	other._capacity = 0;
 	other._data = nullptr;
@@ -57,7 +51,6 @@ rub::vector<T>::vector(rub::vector<T>&& other) noexcept : _data(other._data), _s
 template <typename T>
 rub::vector<T>::vector(const std::initializer_list<T>& list) : _data(nullptr), _size(0), _capacity(0)
 {
-	// std::cout << "vector initializer_list ctor called.\n";
 	if (list.size() > 0)
 	{
 		this->_capacity = 2;
@@ -72,14 +65,12 @@ rub::vector<T>::vector(const std::initializer_list<T>& list) : _data(nullptr), _
 template <typename T>
 rub::vector<T>::~vector()
 {
-	// std::cout << "vector dtor called.\n";
 	delete[] this->_data;
 }
 
 template <typename T>
 rub::vector<T>&	rub::vector<T>::operator=(const rub::vector<T>& other)
 {
-	// std::cout << "vector copy assignment operator called.\n";
 	if (this != &other)
 	{
 		delete[] this->_data;
@@ -95,7 +86,6 @@ rub::vector<T>&	rub::vector<T>::operator=(const rub::vector<T>& other)
 template <typename T>
 rub::vector<T>&	rub::vector<T>::operator=(rub::vector<T>&& other) noexcept
 {
-	// std::cout << "vector move assignment operator called.\n";
 	if (this != &other)
 	{
 		delete[] this->_data;
@@ -230,6 +220,78 @@ template <typename T>
 const T&	rub::vector<T>::back(void) const noexcept
 {
 	return (this->_data[this->_size - 1]);
+}
+
+template <typename T>
+typename rub::vector<T>::iterator	rub::vector<T>::begin(void) noexcept
+{
+	return (typename rub::vector<T>::iterator(this->_data));
+}
+
+template <typename T>
+typename rub::vector<T>::const_iterator	rub::vector<T>::begin(void) const noexcept
+{
+	return (typename rub::vector<T>::const_iterator(this->_data));
+}
+
+template <typename T>
+typename rub::vector<T>::const_iterator	rub::vector<T>::cbegin(void) const noexcept
+{
+	return (typename rub::vector<T>::const_iterator(this->_data));
+}
+
+template <typename T>
+typename rub::vector<T>::iterator	rub::vector<T>::end(void) noexcept
+{
+	return (typename rub::vector<T>::iterator(this->_data + this->_size));
+}
+
+template <typename T>
+typename rub::vector<T>::const_iterator	rub::vector<T>::end(void) const noexcept
+{
+	return (typename rub::vector<T>::const_iterator(this->_data + this->_size));
+}
+
+template <typename T>
+typename rub::vector<T>::const_iterator	rub::vector<T>::cend(void) const noexcept
+{
+	return (typename rub::vector<T>::const_iterator(this->_data + this->_size));
+}
+
+template <typename T>
+typename rub::vector<T>::reverse_iterator	rub::vector<T>::rbegin(void) noexcept
+{
+	return (typename rub::vector<T>::reverse_iterator(end()));
+}
+
+template <typename T>
+typename rub::vector<T>::const_reverse_iterator	rub::vector<T>::rbegin(void) const noexcept
+{
+	return (typename rub::vector<T>::const_reverse_iterator(end()));
+}
+
+template <typename T>
+typename rub::vector<T>::const_reverse_iterator	rub::vector<T>::crbegin(void) const noexcept
+{
+	return (typename rub::vector<T>::const_reverse_iterator(cend()));
+}
+
+template <typename T>
+typename rub::vector<T>::reverse_iterator	rub::vector<T>::rend(void) noexcept
+{
+	return (typename rub::vector<T>::reverse_iterator(begin()));
+}
+
+template <typename T>
+typename rub::vector<T>::const_reverse_iterator	rub::vector<T>::rend(void) const noexcept
+{
+	return (typename rub::vector<T>::const_reverse_iterator(begin()));
+}
+
+template <typename T>
+typename rub::vector<T>::const_reverse_iterator	rub::vector<T>::crend(void) const noexcept
+{
+	return (typename rub::vector<T>::const_reverse_iterator(cbegin()));
 }
 
 template <typename T>
