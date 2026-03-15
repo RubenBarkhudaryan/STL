@@ -23,7 +23,7 @@ namespace rub
 
 			/*-----queue operators-----*/
 			rub::queue<T>&	operator=(const rub::queue<T>& other);
-			rub::queue<T>&	operator=(rub::queue<T>&& other);
+			rub::queue<T>&	operator=(rub::queue<T>&& other) noexcept;
 
 			/*-----queue methods (element access)-----*/
 			rub::node<T>		*front(void);

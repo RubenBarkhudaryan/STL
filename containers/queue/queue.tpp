@@ -36,7 +36,7 @@ rub::queue<T>&	rub::queue<T>::operator=(const rub::queue<T>& other)
 }
 
 template <typename T>
-rub::queue<T>&	rub::queue<T>::operator=(rub::queue<T>&& other)
+rub::queue<T>&	rub::queue<T>::operator=(rub::queue<T>&& other) noexcept
 {
 	if (this != &other)
 		rub::list<T>::operator=(std::move(other));
