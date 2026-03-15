@@ -2,8 +2,8 @@
 
 # define HASH_TABLE_H
 
-# include "./list/list.h"
-# include "./vector/vector.h"
+# include "../list/list.h"
+# include "../vector/vector.h"
 
 namespace rub
 {
