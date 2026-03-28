@@ -33,9 +33,9 @@ This project focuses on low-level C++ engineering by rebuilding standard library
 
 - `rub::unique_ptr` (+ array specialization)
 - `rub::shared_ptr` (+ array specialization)
-  - Atomic reference counting via control blocks
-  - Custom deleter support
-  - Conversions from `unique_ptr` where supported
+	- Atomic reference counting via control blocks
+	- Custom deleter support
+	- Conversions from `unique_ptr` where supported
 
 ### Algorithms and Utilities
 
@@ -47,21 +47,21 @@ This project focuses on low-level C++ engineering by rebuilding standard library
 ## Project Structure
 
 ```text
-algorithms/
-containers/
-  list/
-  queue/
-  set/
-  stack/
-  vector/
-exception/
-iterator/
-  forward_iterator/
-  random_access_iterator/
-pair/
-smart_pointers/
-  shared_ptr/
-  unique_ptr/
+├──	algorithms/
+├──	containers/
+│	├── list/
+│	├── queue/
+│	├── set/
+│	├── stack/
+│	└── vector/
+├── exception/
+├── iterator/
+│	├── forward_iterator/
+│	└── random_access_iterator/
+├── pair/
+└── smart_pointers/
+	├── shared_ptr/
+	└── unique_ptr/
 ```
 
 ## Build and Run (Example)
